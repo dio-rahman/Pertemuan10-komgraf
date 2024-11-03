@@ -1,0 +1,272 @@
+import bpy
+import math
+import mathutils
+
+def duplicate_object(original_name, new_name, collection_name=None):
+    original_object = bpy.data.objects.get(original_name)
+    if original_object is None:
+        print("Object not found")
+        return None
+    new_object_data = original_object.data.copy()
+    new_object = bpy.data.objects.new(new_name, new_object_data)
+    if collection_name:
+        collection = bpy.data.collections.get(collection_name)
+        if not collection:
+            collection = bpy.data.collections.new(collection_name)
+            bpy.context.scene.collection.children.link(collection)
+        collection.objects.link(new_object)
+    else:
+        original_collection = original_object.users_collection[0]
+        original_collection.objects.link(new_object)
+    return new_object
+
+def rotate_object(obj, x_degrees=0, y_degrees=0, z_degrees=0):
+    if obj:
+        obj.rotation_euler[0] += math.radians(x_degrees)
+        obj.rotation_euler[1] += math.radians(y_degrees)
+        obj.rotation_euler[2] += math.radians(z_degrees)
+        bpy.context.view_layer.update()
+
+def set_location(obj, x, y, z):
+    if obj:
+        obj.location = (x, y, z)
+        bpy.context.view_layer.update()
+
+def resize_object(obj, scale_x, scale_y, scale_z):
+    if obj:
+        obj.scale = (scale_x, scale_y, scale_z)
+        bpy.context.view_layer.update()
+        
+def parent_objects(parent_obj, child_obj):
+    child_obj.parent = parent_obj
+
+
+if __name__ == "__main__":
+# Badan helikopter
+    badanHelikopter1 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan1", "Helikopter")
+    if badanHelikopter1:
+        rotate_object(badanHelikopter1, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(badanHelikopter1, 50, 10, 62)
+        resize_object(badanHelikopter1, 1, 1, 1)
+    badanHelikopter2 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan2", "Helikopter")
+    if badanHelikopter2:
+        rotate_object(badanHelikopter2, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(badanHelikopter2, 50, 10, 100)
+        resize_object(badanHelikopter2, 1, 1, 1)
+    badanHelikopter3 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan3", "Helikopter")
+    if badanHelikopter3:
+        rotate_object(badanHelikopter3, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(badanHelikopter3, 50, 48, 100)
+        resize_object(badanHelikopter3, 1, 1, 1)
+    badanHelikopter4 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan4", "Helikopter")
+    if badanHelikopter4:
+        rotate_object(badanHelikopter4, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(badanHelikopter4, 50, 48, 62)
+        resize_object(badanHelikopter4, 1, 1, 1)
+    badanHelikopter5 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan5", "Helikopter")
+    if badanHelikopter5:
+        rotate_object(badanHelikopter5, x_degrees=0, y_degrees=90, z_degrees=0)
+        set_location(badanHelikopter5, 88, 10, 112)
+        resize_object(badanHelikopter5, 1, 1, 1)
+    badanHelikopter6 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan6", "Helikopter")
+    if badanHelikopter6:
+        rotate_object(badanHelikopter6, x_degrees=0, y_degrees=90, z_degrees=0)
+        set_location(badanHelikopter6, 50, 10,112)
+        resize_object(badanHelikopter6, 1, 1, 1)
+    badanHelikopter7 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan7", "Helikopter")
+    if badanHelikopter7:
+        rotate_object(badanHelikopter7, x_degrees=0, y_degrees=90, z_degrees=0)
+        set_location(badanHelikopter7, 50, 48, 112)
+        resize_object(badanHelikopter7, 1, 1, 1)
+    badanHelikopter8 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan8", "Helikopter")
+    if badanHelikopter8:
+        rotate_object(badanHelikopter8, x_degrees=0, y_degrees=90, z_degrees=0)
+        set_location(badanHelikopter8, 88, 48, 112)
+        resize_object(badanHelikopter8, 1, 1, 1)
+    badanHelikopter9 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan9", "Helikopter")
+    if badanHelikopter9:
+        rotate_object(badanHelikopter9, x_degrees=0, y_degrees=0, z_degrees=90)
+        set_location(badanHelikopter9, 62, 10, 62)
+        resize_object(badanHelikopter9, 1, 1, 1)
+    badanHelikopter10 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan10", "Helikopter")
+    if badanHelikopter10:
+        rotate_object(badanHelikopter10, x_degrees=0, y_degrees=0, z_degrees=90)
+        set_location(badanHelikopter10, 62, 10, 100)
+        resize_object(badanHelikopter10, 1, 1, 1)
+    badanHelikopter11 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan11", "Helikopter")
+    if badanHelikopter11:
+        rotate_object(badanHelikopter11, x_degrees=0, y_degrees=0, z_degrees=90)
+        set_location(badanHelikopter11, 100, 10, 100)
+        resize_object(badanHelikopter11, 1, 1, 1)
+    badanHelikopter12 = duplicate_object("Beam STR ESS BU04x01x01 - SPN-BEM-0041 (stemfie.org)", "Badan12", "Helikopter")
+    if badanHelikopter12:
+        rotate_object(badanHelikopter12, x_degrees=0, y_degrees=0, z_degrees=90)
+        set_location(badanHelikopter12, 100, 10, 62)
+        resize_object(badanHelikopter12, 1, 1, 1)
+    atapHelikopter1 = duplicate_object("Brace STR ERR BU05x01x00.25 - SPN-BRC-0004 (stemfie.org)", "Atap Badan 1", "Helikopter")
+    if atapHelikopter1:
+        rotate_object(atapHelikopter1, x_degrees=0, y_degrees=0, z_degrees=45)
+        set_location(atapHelikopter1, 56, 16, 112)
+        resize_object(atapHelikopter1, 1.1, 1.1, 1.1)
+    atapHelikopter2 = duplicate_object("Brace STR ERR BU05x01x00.25 - SPN-BRC-0004 (stemfie.org)", "Atap Badan 2", "Helikopter")
+    if atapHelikopter2:
+        rotate_object(atapHelikopter2, x_degrees=0, y_degrees=0, z_degrees=-45)
+        set_location(atapHelikopter2, 56, 54, 112)
+        resize_object(atapHelikopter2, 1.1, 1.1, 1.1)
+    
+    bautHelikopter1 = duplicate_object("Nut RH BU01.00x5mm - SPN-NUT-0001 (stemfie.org)", "Baut 1", "Helikopter")
+    if bautHelikopter1:
+        rotate_object(bautHelikopter1, x_degrees=90, y_degrees=0, z_degrees=90)
+        set_location(bautHelikopter1, 44, 54, 68)
+        resize_object(bautHelikopter1, 1.2, 1.2, 1.2)
+    bautHelikopter2 = duplicate_object("Nut RH BU01.00x5mm - SPN-NUT-0001 (stemfie.org)", "Baut 2", "Helikopter")
+    if bautHelikopter2:
+        rotate_object(bautHelikopter2, x_degrees=90, y_degrees=0, z_degrees=90)
+        set_location(bautHelikopter2, 100, 16, 68)
+        resize_object(bautHelikopter2, 1.2, 1.2, 1.2)
+    bautHelikopter3 = duplicate_object("Nut RH BU01.00x5mm - SPN-NUT-0001 (stemfie.org)", "Baut 3", "Helikopter")
+    if bautHelikopter3:
+        rotate_object(bautHelikopter3, x_degrees=90, y_degrees=0, z_degrees=90)
+        set_location(bautHelikopter3, 100, 54, 68)
+        resize_object(bautHelikopter3, 1.2, 1.2, 1.2)
+    bautHelikopter4 = duplicate_object("Nut RH BU01.00x5mm - SPN-NUT-0001 (stemfie.org)", "Baut 4", "Helikopter")
+    if bautHelikopter4:
+        rotate_object(bautHelikopter4, x_degrees=90, y_degrees=0, z_degrees=90)
+        set_location(bautHelikopter4, 44, 16, 68)
+        resize_object(bautHelikopter4, 1.2, 1.2, 1.2)
+    
+    murBadan1 = duplicate_object("Screw RHD RH BU00.25 - SPN-SCR-0081 (stemfie.org)", "Mur Badan 1", "Helikopter")
+    if murBadan1:
+        rotate_object(murBadan1, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(murBadan1, 48, 54, 68)
+        resize_object(murBadan1, 1.2, 1.2, 1.2)
+    murBadan2 = duplicate_object("Screw RHD RH BU00.25 - SPN-SCR-0081 (stemfie.org)", "Mur Badan 2", "Helikopter")
+    if murBadan2:
+        rotate_object(murBadan2, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(murBadan2, 48, 16, 68)
+        resize_object(murBadan2, 1.2, 1.2, 1.2)
+    murBadan3 = duplicate_object("Screw RHD RH BU00.25 - SPN-SCR-0081 (stemfie.org)", "Mur Badan 3", "Helikopter")
+    if murBadan3:
+        rotate_object(murBadan3, x_degrees=0, y_degrees=0, z_degrees=180)
+        set_location(murBadan3, 102, 54, 68)
+        resize_object(murBadan3, 1.2, 1.2, 1.2)
+    murBadan4 = duplicate_object("Screw RHD RH BU00.25 - SPN-SCR-0081 (stemfie.org)", "Mur Badan 4", "Helikopter")
+    if murBadan4:
+        rotate_object(murBadan4, x_degrees=0, y_degrees=0, z_degrees=180)
+        set_location(murBadan4, 102, 16, 68)
+        resize_object(murBadan4, 1.2, 1.2, 1.2)
+
+
+# kaki helikopter
+    kakiBawah1 = duplicate_object("Brace STR ERR BU10x01x00.25 - SPN-BRC-0009 (stemfie.org)", "Kaki Bawah 1", "Helikopter")
+    if kakiBawah1:
+        rotate_object(kakiBawah1, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(kakiBawah1, 18, 54, 47)
+        resize_object(kakiBawah1, 1, 1, 1)    
+    kakiBawah2 = duplicate_object("Brace STR ERR BU10x01x00.25 - SPN-BRC-0009 (stemfie.org)", "Kaki Bawah 2", "Helikopter")
+    if kakiBawah2:
+        rotate_object(kakiBawah2, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(kakiBawah2, 18, 16, 47)
+        resize_object(kakiBawah2, 1, 1, 1)
+        
+    penyanggaKaki1 = duplicate_object("Beam STR ESS BU02x01x01 - SPN-BEM-0039 (stemfie.org)", "Penyangga kaki 1", "Helikopter")
+    if penyanggaKaki1:
+        rotate_object(penyanggaKaki1, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(penyanggaKaki1, 62, 48, 50)
+        resize_object(penyanggaKaki1, 1, 1, 1)
+    penyanggaKaki2 = duplicate_object("Beam STR ESS BU02x01x01 - SPN-BEM-0039 (stemfie.org)", "Penyangga kaki 2", "Helikopter")
+    if penyanggaKaki2:
+        rotate_object(penyanggaKaki2, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(penyanggaKaki2, 62, 10, 50)
+        resize_object(penyanggaKaki2, 1, 1, 1)
+    
+# ekor helikopter    
+    siripHelikopter1 = duplicate_object("Brace STR ERR BU10x01x00.25 - SPN-BRC-0009 (stemfie.org)", "Sirip Helikopter 1", "Helikopter")
+    if siripHelikopter1:
+        rotate_object(siripHelikopter1, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(siripHelikopter1, -57, 29, 97)
+        resize_object(siripHelikopter1, 1, 1, 1)    
+    siripHelikopter2 = duplicate_object("Brace STR ERR BU10x01x00.25 - SPN-BRC-0009 (stemfie.org)", "Sirip Helikopter 2", "Helikopter")
+    if siripHelikopter2:
+        rotate_object(siripHelikopter2, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(siripHelikopter2, -57, 41, 97)
+        resize_object(siripHelikopter2, 1, 1, 1)    
+    ekorHelikopter1 = duplicate_object("Beam STR ESS BU03x01x01 - SPN-BEM-0040 (stemfie.org)", "Ekor Helikopter 1", "Helikopter")
+    if ekorHelikopter1:
+        rotate_object(ekorHelikopter1, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(ekorHelikopter1, -57, 25, 99)
+        resize_object(ekorHelikopter1, 0.8, 0.8, 0.8)   
+    ekorHelikopter2 = duplicate_object("Beam STR ESS BU03x01x01 - SPN-BEM-0040 (stemfie.org)", "Ekor Helikopter 2", "Helikopter")
+    if ekorHelikopter2:
+        rotate_object(ekorHelikopter2, x_degrees=0, y_degrees=0, z_degrees=0)
+        set_location(ekorHelikopter2, -57, 36, 99)
+        resize_object(ekorHelikopter2, 0.8, 0.8, 0.8)       
+    ekorHelikopter3 = duplicate_object("Brace STR ERR BU07x01x00.25 - SPN-BRC-0006 (stemfie.org)", "Ekor Helikopter 3", "Helikopter")
+    if ekorHelikopter3:
+        rotate_object(ekorHelikopter3, x_degrees=0, y_degrees=90, z_degrees=180)
+        set_location(ekorHelikopter3, -57, 29, 130)
+        resize_object(ekorHelikopter3, 0.4, 0.5, 0.5) 
+    ekorHelikopter4 = duplicate_object("Brace STR ERR BU07x01x00.25 - SPN-BRC-0006 (stemfie.org)", "Ekor Helikopter 4", "Helikopter")
+    if ekorHelikopter4:
+        rotate_object(ekorHelikopter4, x_degrees=0, y_degrees=90, z_degrees=180)
+        set_location(ekorHelikopter4, -57, 41, 130)
+        resize_object(ekorHelikopter4, 0.4, 0.5, 0.5)
+    siripMiring1 = duplicate_object("Brace STR ERR BU07x01x00.25 - SPN-BRC-0006 (stemfie.org)", "Sirip Miring 1", "Helikopter")
+    if siripMiring1:
+        rotate_object(siripMiring1, x_degrees=0, y_degrees=-40, z_degrees=180)
+        set_location(siripMiring1, -33, 29, 109)
+        resize_object(siripMiring1, 0.4, 0.5, 0.5) 
+    siripMiring2 = duplicate_object("Brace STR ERR BU07x01x00.25 - SPN-BRC-0006 (stemfie.org)", "Sirip Miring 2", "Helikopter")
+    if siripMiring2:
+        rotate_object(siripMiring2, x_degrees=0, y_degrees=-40, z_degrees=180)
+        set_location(siripMiring2, -33, 41, 109)
+        resize_object(siripMiring2, 0.4, 0.5, 0.5)
+    
+    murEkor = duplicate_object("Screw RHD RH BU01.75 - SPN-SCR-0087 (stemfie.org)", "Mur Ekor", "Helikopter")
+    if murEkor:
+        rotate_object(murEkor, x_degrees=0, y_degrees=0, z_degrees=-90)
+        set_location(murEkor, -42, 53, 104)
+        resize_object(murEkor, 1.51, 1.08, 1.08)    
+    bautHelikopter1 = duplicate_object("Nut RH BU01.00x5mm - SPN-NUT-0001 (stemfie.org)", "Baut Ekor 1", "Helikopter")
+    if bautHelikopter1:
+        rotate_object(bautHelikopter1, x_degrees=90, y_degrees=90, z_degrees=0)
+        set_location(bautHelikopter1, -42, 53, 104)
+        resize_object(bautHelikopter1, 1, 1, 1)
+    bautHelikopter3 = duplicate_object("Nut RH BU01.00x5mm - SPN-NUT-0001 (stemfie.org)", "Baut Ekor 2", "Helikopter")
+    if bautHelikopter3:
+        rotate_object(bautHelikopter3, x_degrees=90, y_degrees=90, z_degrees=0)
+        set_location(bautHelikopter3, -42, 24, 103)
+        resize_object(bautHelikopter3, 1, 1, 1)    
+    balingEkor = duplicate_object("Spacer FRE BU00.25x01.00 - SPN-SPR-0050 (stemfie.org)", "Baling Ekor", "Helikopter")
+    if balingEkor:
+        rotate_object(balingEkor, x_degrees=0, y_degrees=180, z_degrees=0)
+        set_location(balingEkor, -42, 47, 74)
+        resize_object(balingEkor, 0.6, 0.2, 20)
+        
+# kaki helikopter
+    baling_baling_1 = duplicate_object("Brace STR ERR BU07x01x00.25 - SPN-BRC-0006 (stemfie.org)", "Baling Baling 1", "Helikopter")
+    if baling_baling_1:
+        set_location(baling_baling_1, 74, 35, 116)
+        rotate_object(baling_baling_1, x_degrees=0, y_degrees=0, z_degrees=0)
+    baling_baling_2 = duplicate_object("Brace STR ERR BU07x01x00.25 - SPN-BRC-0006 (stemfie.org)", "Baling Baling 2", "Helikopter")
+    if baling_baling_2:
+        set_location(baling_baling_2, 74, 35, 116)
+        rotate_object(baling_baling_2, x_degrees=0, y_degrees=0, z_degrees=90)
+    baling_baling_3 = duplicate_object("Brace STR ERR BU07x01x00.25 - SPN-BRC-0006 (stemfie.org)", "Baling Baling 3", "Helikopter")
+    if baling_baling_3:
+        set_location(baling_baling_3, 74, 35, 116)
+        rotate_object(baling_baling_3, x_degrees=0, y_degrees=0, z_degrees=180)
+    baling_baling_4 = duplicate_object("Brace STR ERR BU07x01x00.25 - SPN-BRC-0006 (stemfie.org)", "Baling Baling 4", "Helikopter")
+    if baling_baling_4:
+        set_location(baling_baling_4, 74, 35, 116)
+        rotate_object(baling_baling_4, x_degrees=0, y_degrees=0, z_degrees=270)
+    bautBaling = duplicate_object("Screw RHD RH BU01.00 - SPN-SCR-0084 (stemfie.org)", "Baut Baling", "Helikopter")
+    if bautBaling:
+        set_location(bautBaling, 74, 35, 116)
+        rotate_object(bautBaling, x_degrees=0, y_degrees=90, z_degrees=0)
+        resize_object(bautBaling, 1.00324, 1.00324, 1.00324)
+    murBaling = duplicate_object("Nut CPN RH BU1x1.00 - SPN-NUT-0035 (stemfie.org)", "Mur Baling", "Helikopter")
+    if mur:
+        set_location(murBaling, 74, 35, 116)
+        rotate_object(murBaling, x_degrees=0, y_degrees=0, z_degrees=0)
+        resize_object(murBaling, 1.03606, 1.03606, 1.03606)
